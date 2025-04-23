@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Step Text Display with Click Navigation</title>
+  <style>
+    body {
+      background-image: url('simple-old-paper-1.jpg');
+      background-size: cover;
+      font-family: 'Playfair Display', 'Cinzel', 'Merriweather', serif;
+      margin: 20px;
+      display: flex;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      line-height: 0.5rem;
+    }
+
+    .step-container {
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+      position: absolute;
+      text-align: center;
+      padding: 20px;
+      top: 25%;
+    }
+
+    .step-container.active {
+      opacity: 1;
+      transform: translateX(0);
+      line-height: 0.5rem;
+    }
+
+    footer {
+      margin-top: 40px;  
+      font-size: 16px;  
+      color: black;     
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="step1" class="step-container active">
+      <p style="font-size: 90px;">Sonnet 18</p>
+      <p style="font-size: 35px;">William Shakespeare</p>
+  </div>
+
+  <div id="step2" class="step-container">
+    <p style="font-size: 35px;">Shall I compare thee to a summer's day?</p>
+    <p style="font-size: 35px;">Thou art more lovely and more temperate:</p>
+    <p style="font-size: 35px;">Rough winds do shake the darling buds of May,</p>
+    <p style="font-size: 35px;">And summer's lease hath all too short a date:</p>
+  </div>
+
+  <div id="step3" class="step-container">
+    <p style="font-size: 35px;">Sometime too hot the eye of heaven shines,</p>
+    <p style="font-size: 35px;">And every fair from fair sometime declines,</p>
+    <p style="font-size: 35px;">By chance or nature's changing course untrimm'd:</p>
+    <p style="font-size: 35px;">But thy eternal summer shall not fade,</p>
+    <p style="font-size: 35px;">Nor lose possession of that fair thou ow'st:</p>
+  </div>
+
+  <div id="step4" class="step-container">
+    <p style="font-size: 35px;">Nor shall death brag thou wander'st in his shade,</p>
+    <p style="font-size: 35px;">When in eternal lines to time thou grow'st:</p>
+    <p style="font-size: 35px;">So long as men can breathe or eyes can see,</p>
+    <p style="font-size: 35px;">So long lives this, and this gives life to thee.</p>
+  </div>
+
+  <footer>
+    <p>Designed by Asifa Raditya</p>
+    <p>Cyber Literature and Culture</p>
+  </footer>
+  <script>
+    let currentStep = 1; // Track the current step
+
+    // Add event listener for clicks anywhere on the page
+    document.addEventListener('click', function() {
+      // Hide the current step and show the next one
+      document.getElementById(`step${currentStep}`).classList.remove('active');
+      
+      // Move to the next step, or cycle back to step 1 after step 3
+      currentStep = (currentStep % 3) + 1;
+      
+      // Show the new step
+      document.getElementById(`step${currentStep}`).classList.add('active');
+    });
+  </script>
+</body>
+</html>
